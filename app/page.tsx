@@ -14,7 +14,7 @@ function cn(...classes: Array<string | false | null | undefined>) {
 
 const faqs = [
   {
-    q: "What is Jobverra?",
+    q: "What is Jobvera?",
     a: "Jobverra is a next generation freelance and job matching platform built to connect skilled individuals with employers across industries—making hiring smarter, faster, and more human.",
   },
   {

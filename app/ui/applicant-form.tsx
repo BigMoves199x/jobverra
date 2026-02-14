@@ -166,7 +166,7 @@ export default function ApplicantForm() {
                   value={form.phone}
                   onChange={handleChange}
                   className="w-full rounded-2xl border border-[rgba(15,42,68,0.14)] px-4 py-3 outline-none focus:border-[#e07a3f]"
-                  placeholder="+234..."
+                  placeholder=""
                 />
               </div>
 
