@@ -1,30 +1,38 @@
-// lib/sendTelegramNotification.ts
-'use server';
+// app/lib/sendTelegramNotification.ts
 
-export async function sendTelegramNotification(text: string) {
-  
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+type ParseMode = "HTML" | "Markdown" | "MarkdownV2";
+
+export default async function sendTelegramNotification(
+  text: string,
+  opts?: {
+    parse_mode?: ParseMode;
+    disable_web_page_preview?: boolean;
+  }
+): Promise<void> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
-  if (!botToken || !chatId) {
-    console.warn('❌ Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID');
-    return;
+  if (!token || !chatId) {
+    throw new Error("Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID");
   }
 
-  const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+  const payload = {
+    chat_id: chatId,
+    text,
+    parse_mode: opts?.parse_mode ?? "HTML", // ✅ default to HTML
+    disable_web_page_preview: opts?.disable_web_page_preview ?? false, // ✅ allow previews
+  };
 
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-      parse_mode: 'HTML',
-    }),
+  const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
   });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error('❌ Telegram API error:', errorText);
+  const data = await res.json();
+
+  if (!data.ok) {
+    console.error("❌ Telegram error:", data);
+    throw new Error(data.description || "Telegram sendMessage failed");
   }
 }

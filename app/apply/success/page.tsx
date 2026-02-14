@@ -3,57 +3,68 @@ import Link from "next/link";
 
 export default function SuccessPage() {
   return (
-    <div className="relative min-h-screen bg-[#070a12] flex items-center justify-center px-4 sm:px-6 overflow-hidden text-white">
-      {/* Subtle background accents */}
-      <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-emerald-300/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-28 -left-24 h-96 w-96 rounded-full bg-indigo-400/10 blur-3xl" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:radial-gradient(rgba(255,255,255,0.7)_1px,transparent_1px)] [background-size:14px_14px]" />
+    <main className="relative min-h-screen bg-[var(--bg)] text-[var(--blue)] flex items-center justify-center px-4 sm:px-6 overflow-hidden">
+      <style>{`
+        :root {
+          --bg: #ffffff;
+          --blue: #0f2a44;
+          --blueSoft: #3a5f8c;
+          --orange: #e07a3f;
+          --orangeHover: #c8652e;
+
+          --text: rgba(15, 42, 68, 0.90);
+          --muted: rgba(15, 42, 68, 0.66);
+          --faint: rgba(15, 42, 68, 0.06);
+          --line: rgba(15, 42, 68, 0.14);
+          --shadow: 0 18px 45px rgba(15, 42, 68, 0.10);
+        }
+      `}</style>
+
+      {/* On-brand background accents */}
+      <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-[color:rgba(224,122,63,0.16)] blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-28 -left-24 h-96 w-96 rounded-full bg-[color:rgba(15,42,68,0.10)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.22] [background-image:radial-gradient(rgba(15,42,68,0.25)_1px,transparent_1px)] [background-size:18px_18px]" />
 
       {/* Card */}
-      <div className="relative w-full max-w-lg rounded-[28px] bg-white/5 ring-1 ring-white/10 backdrop-blur shadow-[0_25px_80px_rgba(0,0,0,0.45)] p-6 sm:p-8 text-center">
+      <div className="relative w-full max-w-lg rounded-[28px] border border-[var(--line)] bg-white shadow-[var(--shadow)] p-7 sm:p-9 text-center">
         {/* Icon */}
-        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-300/15 ring-1 ring-emerald-300/30">
-          <CheckCircleIcon className="h-12 w-12 text-emerald-300" />
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[color:rgba(224,122,63,0.14)] ring-1 ring-[color:rgba(224,122,63,0.28)]">
+          <CheckCircleIcon className="h-12 w-12 text-[var(--orange)]" />
         </div>
 
         {/* Heading */}
-        <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--text)]">
           Application submitted
         </h1>
 
         {/* Copy */}
-        <p className="mt-3 text-sm sm:text-base text-white/70 leading-relaxed">
-          Thank you for applying to <span className="text-white/85 font-medium">SpeedJob</span>.
+        <p className="mt-3 text-sm sm:text-base text-[var(--muted)] leading-relaxed">
+          Thank you for applying to{" "}
+          <span className="text-[var(--blue)] font-semibold">Job Vera</span>.
           <br className="hidden sm:block" />
           Our team will review your application and contact you shortly via{" "}
-          <span className="text-white/85 font-medium">email</span> or{" "}
-          <span className="text-white/85 font-medium">phone</span>.
+          <span className="text-[var(--blue)] font-semibold">email</span> or{" "}
+          <span className="text-[var(--blue)] font-semibold">phone</span>.
         </p>
 
-        <p className="mt-4 text-xs sm:text-sm text-white/55">
-          If you have any questions in the meantime, please visit our website and
-          use the chat feature to reach us.
+        <p className="mt-4 text-xs sm:text-sm text-[var(--muted)]">
+          If you have questions, please visit our website and use the chat
+          feature to reach us.
         </p>
 
         {/* CTA */}
         <Link
           href="/"
-          className="
-            mt-6 inline-flex items-center justify-center gap-2
-            rounded-2xl px-6 py-3
-            bg-emerald-300 text-[#070a12] font-semibold
-            hover:brightness-95 transition
-            ring-1 ring-white/10
-          "
+          className="mt-7 inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 bg-[var(--orange)] text-white font-semibold hover:bg-[var(--orangeHover)] transition shadow-[0_14px_30px_rgba(224,122,63,0.22)]"
         >
           Back to Home <ArrowRightIcon className="w-5 h-5" />
         </Link>
 
         {/* Footer note */}
-        <p className="mt-6 text-xs text-white/45">
-          © {new Date().getFullYear()} SpeedJob
+        <p className="mt-7 text-xs text-[var(--muted)]">
+          © {new Date().getFullYear()} Job Vera
         </p>
       </div>
-    </div>
+    </main>
   );
 }
