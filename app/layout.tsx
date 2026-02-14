@@ -3,8 +3,8 @@ import { inter } from "@/app/ui/fonts";
 import Script from "next/script";
 
 export const metadata = {
-  title: "Jobverra",
-  description: "Jobverra - next generation freelance and job matching platform",
+  title: "Jobvera",
+  description: "Jobvera - next generation freelance and job matching platform",
   icons: { icon: "/logo.png" },
 };
 
