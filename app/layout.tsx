@@ -12,16 +12,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased flex flex-col min-h-screen`}>
-   
+        
+        {/* ✅ Tawk Globals */}
         <Script id="tawk-globals" strategy="afterInteractive">
-          {"var Tawk_API = Tawk_API || {}; var Tawk_LoadStart = new Date();"}
+          {`var Tawk_API = Tawk_API || {}; var Tawk_LoadStart = new Date();`}
         </Script>
 
-
+        {/* ✅ NEW Tawk Embed Script */}
         <Script
           id="tawk-embed"
-          src="https://embed.tawk.to/698b9ff5813e191c30f8ae7c/1jh4mhm44"
+          src="https://embed.tawk.to/6992924de68ce71c379ef3fd/1jhi8n0o0"
           strategy="afterInteractive"
+          crossOrigin="anonymous"
         />
 
         <main className="flex-grow">{children}</main>
